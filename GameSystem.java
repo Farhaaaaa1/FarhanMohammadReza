@@ -1,51 +1,93 @@
 package com.company;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
+/**
+ * our first project , simulation of othelo game
+ * @author Ali
+ * @version 0.0
+ */
 public class GameSystem {
-    public static void main(String[] args) {
-        int tamaaaam = 0;
+    public static void main(String[] args) throws InterruptedException {
         int turn = 1;
         int[] Cell = new int[64];
+        int a ;
         Board board = new Board();
         GameSystem othello = new GameSystem();
         board.firstValue(Cell);
         User user1 = new User(true ,true);
         User user2 = new User(true , true);
-        PCplayer PC = new PCplayer(true, Cell , false);
+        PcPlayer PC = new PcPlayer(true, Cell , false);
         CloudyPlayer userSup = new CloudyPlayer(false, Cell , false);
         int aim;
+
+        Scanner Input = new Scanner(System.in);
+        System.out.println("1- one Player");
+        System.out.println("2- play to getter");
+         a = Input.nextInt() ;
         while (true) {
-            if (userSup.checking(turn, Cell) == 0) {
-                System.out.println(" Pass ... ");
+            if(a==2)
+            {
+                if (userSup.checking(turn, Cell) == 0) {
+                    System.out.println(" Pass ... ");
+                    othello.timeSleep();
+                    turn++;
+
+                    if (userSup.checking(turn, Cell) == 0) {
+                        break;
+                    }
+                }
+                board.printing(Cell, turn);
+                aim = user1.scanning();
+                user1.check(aim, Cell, turn);
+                turn++;
+                if (userSup.checking(turn, Cell) == 0) {
+                    System.out.println(" Pass ... ");
+                    othello.timeSleep();
+                    turn++;
+
+                    if (userSup.checking(turn, Cell) == 0) {
+                        break;
+                    }
+                }
+                board.printing(Cell, turn);
+                aim = user2.scanning();
+                System.out.println(aim);
+                user2.check(aim, Cell, turn);
                 turn++;
 
-                if (userSup.checking(turn, Cell) == 0) {
-                    break;
-                }
             }
-            board.printing(Cell, turn);
-            aim = user1.scanning();
-            user1.check(aim, Cell, turn);
-            turn++;
+            if(a==1) {
+                if (userSup.checking(turn, Cell) == 0) {
+                    System.out.println(" Pass ... ");
+                    othello.timeSleep();
+                    turn++;
 
-            if (userSup.checking(turn, Cell) == 0) {
-                System.out.println(" Pass ... ");
+                    if (userSup.checking(turn, Cell) == 0) {
+                        break;
+                    }
+                }
+                board.printing(Cell, turn);
+                aim = user1.scanning();
+                othello.timeSleep();
+                user1.check(aim, Cell, turn);
                 turn++;
-
                 if (userSup.checking(turn, Cell) == 0) {
-                    break;
+                    System.out.println(" Pass ... ");
+                    othello.timeSleep();
+                    turn++;
+
+                    if (userSup.checking(turn, Cell) == 0) {
+                        break;
+                    }
                 }
+                board.printing(Cell, turn);
+                othello.timeSleep();
+                PC.put(Cell, turn);
+                othello.timeSleep();
+                turn++;
             }
-            board.printing(Cell, turn);
-            System.out.println("inja hastim");
-            PC.put(Cell , turn);
-            System.out.println("tamooom shod");
-            turn++;
-
-//                aim = user2.scanning();
-//                user2.check(aim, Cell, turn);
-//                turn++;
-
-        }
+            }
 
 
         System.out.println();
@@ -56,6 +98,9 @@ public class GameSystem {
         Board.e();
         Board.n();
         Board.d();
+    }
+    public  void timeSleep() throws InterruptedException{
+        TimeUnit.SECONDS.sleep(1);
     }
     }
 

@@ -3,13 +3,13 @@ package com.company;
 
 import javafx.scene.control.Cell;
 
-public class PCplayer extends CloudyPlayer {
+public class PcPlayer extends CloudyPlayer {
     private int minChoices;
     private int[] Cell;
     private int turn;
     private int[] copy = new int[64] ;
 
-    public PCplayer(Boolean changingColorPermission, int[] Cell, Boolean imHuman) {
+    public PcPlayer(Boolean changingColorPermission, int[] Cell, Boolean imHuman) {
         super(changingColorPermission, Cell, imHuman);
     }
 
@@ -27,7 +27,7 @@ public class PCplayer extends CloudyPlayer {
     int[] unrecommendedChoice = new int[]{8 ,16,54 ,49};
 
     public void put(int [] Cell , int turn) {
-        if (turn < 25) {
+        if (turn%7 <= 3 ) {
             int temp = 0;
             System.out.println("shoroo e kar");
             int aim = 0;

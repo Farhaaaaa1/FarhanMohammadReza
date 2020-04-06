@@ -43,7 +43,7 @@ abstract class Player {
     }
 
     public void check(int aim, int[] Cell, int turn) {
-        allRotatedCell = 0;
+        allRotatedCell = 0 ;
         int copyOfTurn = turn;
         if (turn % 2 == 1)
             turn = -1;
@@ -53,58 +53,56 @@ abstract class Player {
             if (aim - 9 >= 0)
                 if (Cell[aim - 9] * turn < 0 && Math.abs((aim - 9) / 8 - aim / 8) == 1) {
                     allRotatedCell += tracing(-9, aim, Cell, turn);
-                    // System.out.println("1...");
+
                 }
             if (aim - 8 >= 0)
                 if (Cell[aim - 8] * turn < 0) {
                     allRotatedCell += tracing(-8, aim, Cell, turn);
-                    //System.out.println("2...");
+
                 }
             if (aim - 7 >= 0)
                 if (Cell[aim - 7] * turn < 0 && (aim / 8 - (aim - 7) / 8) != 0) {
                     allRotatedCell += tracing(-7, aim, Cell, turn);
-                    //  System.out.println("3...");
+
                 }
 
             if (aim - 1 >= 0)
                 if (Cell[aim - 1] * turn < 0 && (aim / 8 - (aim - 1) / 8) == 0) {
                     allRotatedCell += tracing(-1, aim, Cell, turn);
-                    //  System.out.println("4...");
+
                 }
 
             if (aim + 9 < 64)
                 if (Cell[aim + 9] * turn < 0 && Math.abs(aim / 8 - (aim + 9) / 8) == 1) {
                     allRotatedCell += tracing(9, aim, Cell, turn);
-                    System.out.println("5...");
+
                 }
 
             if (aim + 8 < 64)
                 if (Cell[aim + 8] * turn < 0) {
                     allRotatedCell += tracing(8, aim, Cell, turn);
-                    //    System.out.println("6...");
+                    System.out.println("here");
                 }
 
             if (aim + 7 < 64)
                 if (Cell[aim + 7] * turn < 0 && (aim / 8 - (aim + 7) / 8) != 0) {
                     allRotatedCell += tracing(7, aim, Cell, turn);
-                    //    System.out.println("7...");
                 }
 
             if (aim + 1 < 64)
                 if (Cell[aim + 1] * turn < 0 && (aim / 8 - (aim + 1) / 8) == 0) {
                     allRotatedCell += tracing(1, aim, Cell, turn);
-                    //   System.out.println("8...");
                 }
             if (changingColorPermission && allRotatedCell == 0 && imHumn) {
                 int duplicateAim = scanningAgain();
                 check(duplicateAim, Cell, copyOfTurn);
             }
             if (!changingColorPermission && allRotatedCell != 0) {
-                System.out.println("aim = " + aim);
                 numberOfChoices++;
             }
             break;
         }
+
     }
 
     public int tracing(int move, int startingPoint, int[] Cell, int turn) {
@@ -170,7 +168,7 @@ abstract class Player {
                 return true;
             else
                 return false;
-        } else if (abs == 8)
+        } else if (move == 8)
             return true ;
             else{
             if (abs == Math.abs(finishingPoint % 8 - startingPoint % 8))
