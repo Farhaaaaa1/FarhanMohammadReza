@@ -5,7 +5,13 @@ import java.util.Scanner;
 
 abstract class Player {
     private Boolean changingColorPermission;
+    private Boolean imHuman ;
     private int numberOfChoices ;
+    private int allRotatedCell ;
+
+    public int getAllRotatedCell() {
+        return allRotatedCell;
+    }
 
     public int getNumberOfChoices() {
         return numberOfChoices;
@@ -15,8 +21,9 @@ abstract class Player {
         this.numberOfChoices = numberOfChoices;
     }
 
-    public Player(Boolean changingColorPermission) {
+    public Player(Boolean changingColorPermission, Boolean imHuman) {
         this.changingColorPermission = changingColorPermission;
+        this.imHuman = imHuman;
     }
 
     public void check(int aim, int[] Cell, int turn) {
@@ -72,7 +79,7 @@ abstract class Player {
                     allRotatedCell += tracing(1, aim, Cell, turn);
                     //    System.out.println("8...");
                 }
-            if (changingColorPermission && allRotatedCell == 0) {
+            if (changingColorPermission && allRotatedCell == 0 && imHuman) {
                 int duplicateAim = scanningAgain();
                 check(duplicateAim, Cell , copyOfTurn);
             }
@@ -85,29 +92,11 @@ abstract class Player {
     }
 
     public int tracing(int move, int startingPoint, int[] Cell, int turn) {
-        Boolean access  ;
-        int abs ;
         int finishingPoint = startingPoint + move;
         int numberOfRootatedCells = 0;
         while (true) {
-            abs = Math.abs(startingPoint / 8 - finishingPoint / 8);
-            if(Math.abs(move) == 1) {
-                if (abs == 0)
-                    access = true;
-                else
-                    access = false;
-            }
-            else
-            {
-                if(abs != 0 )
-                    access = true;
-                else
-                    access = false;
-            }
-
-
             if (finishingPoint >= 0 && finishingPoint < 64) {
-                if (turn * Cell[finishingPoint] > 0 && access  ) {
+                if (turn * Cell[finishingPoint] > 0 && access(startingPoint , finishingPoint ,move)  ) {
                    // System.out.println("start = " + startingPoint);
                   //  System.out.println("finish = " + finishingPoint);
                   //  System.out.println(move);
@@ -156,6 +145,23 @@ abstract class Player {
             if (x1 <= 8 && y1 <= 8)
                 return result;
             counter++;
+        }
+    }
+    public Boolean access(int startingPoint , int finishingPoint , int move)
+    {
+       int abs = Math.abs(startingPoint / 8 - finishingPoint / 8);
+        if(Math.abs(move) == 1) {
+            if (abs == 0)
+                return  true;
+            else
+                return false;
+        }
+        else
+        {
+            if(abs != 0 )
+                return  true;
+            else
+            return  false;
         }
     }
 }

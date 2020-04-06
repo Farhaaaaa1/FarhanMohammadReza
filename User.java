@@ -3,8 +3,8 @@ package com.company;
 import java.util.Scanner;
 
 public class User extends Player {
-    public User(Boolean changingColorPermission) {
-        super(changingColorPermission);
+    public User(Boolean changingColorPermission, Boolean imHuman) {
+        super(changingColorPermission, imHuman);
     }
 
     public int scanning() {
