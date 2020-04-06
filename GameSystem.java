@@ -14,7 +14,6 @@ public class GameSystem {
         CloudyPlayer userSup = new CloudyPlayer(false, Cell , false);
         int aim;
         while (true) {
-
             if (userSup.checking(turn, Cell) == 0) {
                 System.out.println(" Pass ... ");
                 turn++;
@@ -23,8 +22,6 @@ public class GameSystem {
                     break;
                 }
             }
-
-
             board.printing(Cell, turn);
             aim = user1.scanning();
             user1.check(aim, Cell, turn);
@@ -56,7 +53,9 @@ public class GameSystem {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println("bazi tamoom shod");
+        Board.e();
+        Board.n();
+        Board.d();
     }
     }
 

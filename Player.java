@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 abstract class Player {
     private Boolean changingColorPermission;
-    private Boolean imHumn ;
-    private int numberOfChoices ;
-    private int allRotatedCell ;
+    private Boolean imHumn;
+    private int numberOfChoices;
+    private int allRotatedCell;
 
     public Boolean getChangingColorPermission() {
         return changingColorPermission;
@@ -37,13 +37,13 @@ abstract class Player {
         this.numberOfChoices = numberOfChoices;
     }
 
-    public Player(Boolean changingColorPermission , Boolean imHumn) {
+    public Player(Boolean changingColorPermission, Boolean imHumn) {
         this.changingColorPermission = changingColorPermission;
-        this.imHumn = imHumn ;
+        this.imHumn = imHumn;
     }
 
     public void check(int aim, int[] Cell, int turn) {
-         allRotatedCell = 0;
+        allRotatedCell = 0;
         int copyOfTurn = turn;
         if (turn % 2 == 1)
             turn = -1;
@@ -58,18 +58,18 @@ abstract class Player {
             if (aim - 8 >= 0)
                 if (Cell[aim - 8] * turn < 0) {
                     allRotatedCell += tracing(-8, aim, Cell, turn);
-                     //System.out.println("2...");
+                    //System.out.println("2...");
                 }
             if (aim - 7 >= 0)
                 if (Cell[aim - 7] * turn < 0 && (aim / 8 - (aim - 7) / 8) != 0) {
                     allRotatedCell += tracing(-7, aim, Cell, turn);
-                  //  System.out.println("3...");
+                    //  System.out.println("3...");
                 }
 
             if (aim - 1 >= 0)
                 if (Cell[aim - 1] * turn < 0 && (aim / 8 - (aim - 1) / 8) == 0) {
                     allRotatedCell += tracing(-1, aim, Cell, turn);
-                  //  System.out.println("4...");
+                    //  System.out.println("4...");
                 }
 
             if (aim + 9 < 64)
@@ -81,28 +81,28 @@ abstract class Player {
             if (aim + 8 < 64)
                 if (Cell[aim + 8] * turn < 0) {
                     allRotatedCell += tracing(8, aim, Cell, turn);
-                 //    System.out.println("6...");
+                    //    System.out.println("6...");
                 }
 
             if (aim + 7 < 64)
                 if (Cell[aim + 7] * turn < 0 && (aim / 8 - (aim + 7) / 8) != 0) {
                     allRotatedCell += tracing(7, aim, Cell, turn);
-                     //    System.out.println("7...");
+                    //    System.out.println("7...");
                 }
 
             if (aim + 1 < 64)
                 if (Cell[aim + 1] * turn < 0 && (aim / 8 - (aim + 1) / 8) == 0) {
                     allRotatedCell += tracing(1, aim, Cell, turn);
-                 //   System.out.println("8...");
+                    //   System.out.println("8...");
                 }
-            if (changingColorPermission && allRotatedCell == 0 && imHumn ) {
+            if (changingColorPermission && allRotatedCell == 0 && imHumn) {
                 int duplicateAim = scanningAgain();
-                check(duplicateAim, Cell , copyOfTurn);
+                check(duplicateAim, Cell, copyOfTurn);
             }
-             if(!changingColorPermission && allRotatedCell != 0 ) {
-                 System.out.println("aim = "+aim);
-                 numberOfChoices++;
-             }
+            if (!changingColorPermission && allRotatedCell != 0) {
+                System.out.println("aim = " + aim);
+                numberOfChoices++;
+            }
             break;
         }
     }
@@ -112,32 +112,31 @@ abstract class Player {
         int numberOfRootatedCells = 0;
         while (true) {
             if (finishingPoint >= 0 && finishingPoint < 64) {
-                if (turn * Cell[finishingPoint] > 0 && access(startingPoint , finishingPoint ,move)  ) {
-                   // System.out.println("start = " + startingPoint);
-                  //  System.out.println("finish = " + finishingPoint);
-                   // System.out.println("inja");
+                if (turn * Cell[finishingPoint] > 0 && access(startingPoint, finishingPoint, move)) {
+                    // System.out.println("start = " + startingPoint);
+                    //  System.out.println("finish = " + finishingPoint);
+                    // System.out.println("inja");
                     numberOfRootatedCells += Math.abs((startingPoint - finishingPoint) / move) - 1;
                     if (changingColorPermission)
-                        coloring(startingPoint, finishingPoint, Cell, move , turn);
+                        coloring(startingPoint, finishingPoint, Cell, move, turn);
                     break;
                 }
                 if (Cell[finishingPoint] == 0) {
                     break;
                 }
-            }
-            else
+            } else
                 break;
             finishingPoint += move;
         }
         return numberOfRootatedCells;
     }
 
-    public void coloring(int startingPoint, int finishingPoint, int[] Cell, int move , int color ) {
-       // System.out.println("i is   =" + startingPoint);
-       // System.out.println("j is   =" + finishingPoint);
+    public void coloring(int startingPoint, int finishingPoint, int[] Cell, int move, int color) {
+        // System.out.println("i is   =" + startingPoint);
+        // System.out.println("j is   =" + finishingPoint);
         int i = startingPoint;
         do {
-            Cell[i] = color ;
+            Cell[i] = color;
             i += move;
         }
         while (i != finishingPoint);
@@ -163,21 +162,21 @@ abstract class Player {
             counter++;
         }
     }
-    public Boolean access(int startingPoint , int finishingPoint , int move)
-    {
-       int abs = Math.abs(startingPoint / 8 - finishingPoint / 8);
-        if(Math.abs(move) == 1) {
+
+    public Boolean access(int startingPoint, int finishingPoint, int move) {
+        int abs = Math.abs(startingPoint / 8 - finishingPoint / 8);
+        if (Math.abs(move) == 1) {
             if (abs == 0)
-                return  true;
+                return true;
             else
                 return false;
-        }
-        else
-        {
-            if(abs != 0 )
-                return  true;
+        } else if (abs == 8)
+            return true ;
+            else{
+            if (abs == Math.abs(finishingPoint % 8 - startingPoint % 8))
+                return true;
             else
-            return  false;
+                return false;
         }
     }
 }

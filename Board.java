@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.List;
 
 public class Board {
+    static char E;
 
     public void firstValue(int[] Cell) {
         for (int i = 0; i < 64; ++i) {
@@ -60,4 +61,77 @@ public class Board {
         return counter;
     }
 
+    static void e() {
+        System.out.printf("\n");
+        for (int i = 0; i < 8; i++) {
+            System.out.printf(" ");
+            for (int j = 0; j < 7; j++) {
+                if (i == 0) {
+                    System.out.printf("%c", E);
+                } else if (i > 0 && i < 3
+                        && j < 2) {
+                    System.out.printf("%c", E);
+                } else if (i == 3 && j < 6) {
+                    System.out.printf("%c", E);
+                } else if (i > 3 && i < 6
+                        && j < 2) {
+                    System.out.printf("%c", E);
+                } else if (i == 6) {
+                    System.out.printf("%c", E);
+                } else
+                    System.out.printf(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    static void n() {
+        System.out.println();
+
+        for (int i = 0; i < 8; i++) {
+            System.out.print(" ");
+            for (int n = 0; n < 8; n++) {
+                if (n < 2 || n > 5) {
+                    System.out.print(E);
+                } else if (i == n - 1
+                        || i == n + 1 || i == n) {
+                    System.out.print(E);
+                } else
+                    System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+
+        static void d() {
+            System.out.println();
+            for (int i = 0; i < 8; i++) {
+                {
+                    System.out.print(E);
+                }
+
+                for (int o = 0; o < 8; o++) {
+                    if (i == 0 && (o >= 6 - i))
+                        System.out.print("");
+                    else if (i == 1
+                            && (o == 0 || o == 8 - i
+                            || (o < 6)))
+                        System.out.print(" ");
+                    else if (i == 2 && (o == 1 || o == 8 - i || (o < 6)))
+                        System.out.print(" ");
+
+                    else if ((i == 3 || i == 4 || i == 5) && (o < 7))
+                        System.out.print(" ");
+                    else if (i == 6 && (o == 0 || o == 8 + 5 - i || (o < 6)))
+                        System.out.print(" ");
+                    else if (i == 7 && (o >= 6 - i + 7))
+                        System.out.print(" ");
+                    else {
+                        System.out.print(E);
+                    }
+                }
+                System.out.println();
+            }
+        }
 }
