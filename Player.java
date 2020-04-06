@@ -5,9 +5,25 @@ import java.util.Scanner;
 
 abstract class Player {
     private Boolean changingColorPermission;
-    private Boolean imHuman ;
+    private Boolean imHumn ;
     private int numberOfChoices ;
     private int allRotatedCell ;
+
+    public Boolean getChangingColorPermission() {
+        return changingColorPermission;
+    }
+
+    public void setChangingColorPermission(Boolean changingColorPermission) {
+        this.changingColorPermission = changingColorPermission;
+    }
+
+    public Boolean getImHumn() {
+        return imHumn;
+    }
+
+    public void setImHumn(Boolean imHumn) {
+        this.imHumn = imHumn;
+    }
 
     public int getAllRotatedCell() {
         return allRotatedCell;
@@ -21,13 +37,13 @@ abstract class Player {
         this.numberOfChoices = numberOfChoices;
     }
 
-    public Player(Boolean changingColorPermission, Boolean imHuman) {
+    public Player(Boolean changingColorPermission , Boolean imHumn) {
         this.changingColorPermission = changingColorPermission;
-        this.imHuman = imHuman;
+        this.imHumn = imHumn ;
     }
 
     public void check(int aim, int[] Cell, int turn) {
-        int allRotatedCell = 0;
+         allRotatedCell = 0;
         int copyOfTurn = turn;
         if (turn % 2 == 1)
             turn = -1;
@@ -37,49 +53,49 @@ abstract class Player {
             if (aim - 9 >= 0)
                 if (Cell[aim - 9] * turn < 0 && Math.abs((aim - 9) / 8 - aim / 8) == 1) {
                     allRotatedCell += tracing(-9, aim, Cell, turn);
-                    // System.out.println("1...");ku
+                    // System.out.println("1...");
                 }
             if (aim - 8 >= 0)
                 if (Cell[aim - 8] * turn < 0) {
                     allRotatedCell += tracing(-8, aim, Cell, turn);
-                    //System.out.println("2...");
+                     //System.out.println("2...");
                 }
             if (aim - 7 >= 0)
                 if (Cell[aim - 7] * turn < 0 && (aim / 8 - (aim - 7) / 8) != 0) {
                     allRotatedCell += tracing(-7, aim, Cell, turn);
-                    //  System.out.println("3...");
+                  //  System.out.println("3...");
                 }
 
             if (aim - 1 >= 0)
                 if (Cell[aim - 1] * turn < 0 && (aim / 8 - (aim - 1) / 8) == 0) {
                     allRotatedCell += tracing(-1, aim, Cell, turn);
-                    //System.out.println("4...");
+                  //  System.out.println("4...");
                 }
 
             if (aim + 9 < 64)
                 if (Cell[aim + 9] * turn < 0 && Math.abs(aim / 8 - (aim + 9) / 8) == 1) {
                     allRotatedCell += tracing(9, aim, Cell, turn);
-                    // System.out.println("5...");
+                    System.out.println("5...");
                 }
 
             if (aim + 8 < 64)
                 if (Cell[aim + 8] * turn < 0) {
                     allRotatedCell += tracing(8, aim, Cell, turn);
-                    // System.out.println("6...");
+                 //    System.out.println("6...");
                 }
 
             if (aim + 7 < 64)
                 if (Cell[aim + 7] * turn < 0 && (aim / 8 - (aim + 7) / 8) != 0) {
                     allRotatedCell += tracing(7, aim, Cell, turn);
-                    //      System.out.println("7...");
+                     //    System.out.println("7...");
                 }
 
             if (aim + 1 < 64)
                 if (Cell[aim + 1] * turn < 0 && (aim / 8 - (aim + 1) / 8) == 0) {
                     allRotatedCell += tracing(1, aim, Cell, turn);
-                    //    System.out.println("8...");
+                 //   System.out.println("8...");
                 }
-            if (changingColorPermission && allRotatedCell == 0 && imHuman) {
+            if (changingColorPermission && allRotatedCell == 0 && imHumn ) {
                 int duplicateAim = scanningAgain();
                 check(duplicateAim, Cell , copyOfTurn);
             }
@@ -99,7 +115,7 @@ abstract class Player {
                 if (turn * Cell[finishingPoint] > 0 && access(startingPoint , finishingPoint ,move)  ) {
                    // System.out.println("start = " + startingPoint);
                   //  System.out.println("finish = " + finishingPoint);
-                  //  System.out.println(move);
+                   // System.out.println("inja");
                     numberOfRootatedCells += Math.abs((startingPoint - finishingPoint) / move) - 1;
                     if (changingColorPermission)
                         coloring(startingPoint, finishingPoint, Cell, move , turn);
@@ -117,8 +133,8 @@ abstract class Player {
     }
 
     public void coloring(int startingPoint, int finishingPoint, int[] Cell, int move , int color ) {
-        System.out.println("i is   =" + startingPoint);
-        System.out.println("j is   =" + finishingPoint);
+       // System.out.println("i is   =" + startingPoint);
+       // System.out.println("j is   =" + finishingPoint);
         int i = startingPoint;
         do {
             Cell[i] = color ;
