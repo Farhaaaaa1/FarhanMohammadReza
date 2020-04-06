@@ -6,37 +6,57 @@ public class CloudyPlayer extends Player {
     private int[] Cell;
     private int turn;
 
+    /**
+     * @return turn of the player
+     */
     public int getTurn() {
         return turn;
     }
 
+    /**
+     *
+     * @param turn turn of the player
+     */
     public void setTurn(int turn) {
         this.turn = turn;
     }
 
+    /**
+     * set two item to getter
+     * @param turn turn of the player
+     * @param Cell list of the locations
+     */
     public void setAll(int turn, int[] Cell) {
         this.Cell = Cell;
         this.turn = turn;
     }
 
+    /***
+     *
+     * @param changingColorPermission permission to change color of the Cells
+     * @param Cell list of the loctions
+     * @param imHuman permissin to do somthjing that just human can do (human user )
+     */
     public CloudyPlayer(Boolean changingColorPermission, int [] Cell , Boolean imHuman ) {
         super(changingColorPermission ,imHuman );
         this.Cell = Cell;
         setNumberOfChoices(0);
     }
 
+    /**
+     * method to know how many choices we have to put our Cell
+     * @param turn turn of the player
+     * @param Cell list of the Cells
+     * @return number of the Choices
+     */
     public int checking(int turn , int [] Cell) {
         setNumberOfChoices(0);
         setAll(turn, Cell);
         for (int i = 0; i < Cell.length; i++) {
-            //   System.out.println(i +"  =   ");
             if (Cell[i] == 0) {
-               // System.out.println(i + "  =  " + Cell[i]);
                 check(i, Cell, turn);
             }
         }
-//        if(getNumberOfChoices()> 0)
-//        System.out.println("number of choices =  " + getNumberOfChoices());
         return getNumberOfChoices();
     }
 

@@ -6,16 +6,26 @@ import java.util.List;
 public class Board {
     static char E;
 
+    /**
+     * set all of them
+     * @param Cell Cell of the board we called it in persian mohre LOL
+     */
     public void firstValue(int[] Cell) {
         for (int i = 0; i < 64; ++i) {
             Cell[i] = 0;
         }
+        // the first four Cells
         Cell[27] = 1;
         Cell[28] = -1;
         Cell[35] = -1;
         Cell[36] = 1;
     }
 
+    /**
+     * printing the board game and show score boarde and also write turn of the players in terminal
+     * @param Cell List of all of the Cells
+     * @param turn turn of player
+     */
     public void printing(int[] Cell, int turn) {
         int y = 8;
         int x = 0;
@@ -61,6 +71,10 @@ public class Board {
         return counter;
     }
 
+    /**
+     * nothing important just copy of one site
+     * it just creat a pattern of E in terminal
+     */
     static void e() {
         System.out.printf("\n");
         for (int i = 0; i < 8; i++) {
@@ -84,7 +98,10 @@ public class Board {
             System.out.println();
         }
     }
-
+    /**
+     * nothing important just copy of one site
+     * it just creat a pattern of N in terminal
+     */
     static void n() {
         System.out.println();
 
@@ -103,7 +120,10 @@ public class Board {
         }
     }
 
-
+    /**
+     * nothing important just copy of one site
+     * it just creat D pattern of E in terminal
+     */
         static void d() {
             System.out.println();
             for (int i = 0; i < 8; i++) {

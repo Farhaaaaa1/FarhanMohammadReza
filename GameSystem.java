@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class GameSystem {
     public static void main(String[] args) throws InterruptedException {
+        // set the turn of the player
         int turn = 1;
         int[] Cell = new int[64];
         int a ;
@@ -20,7 +21,7 @@ public class GameSystem {
         PcPlayer PC = new PcPlayer(true, Cell , false);
         CloudyPlayer userSup = new CloudyPlayer(false, Cell , false);
         int aim;
-
+        // maybe now we show the menu
         Scanner Input = new Scanner(System.in);
         System.out.println("1- one Player");
         System.out.println("2- play to getter");
@@ -99,6 +100,11 @@ public class GameSystem {
         Board.n();
         Board.d();
     }
+
+    /**
+     * for wait just a little
+     * @throws InterruptedException
+     */
     public  void timeSleep() throws InterruptedException{
         TimeUnit.SECONDS.sleep(1);
     }

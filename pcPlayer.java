@@ -9,16 +9,28 @@ public class PcPlayer extends CloudyPlayer {
     private int turn;
     private int[] copy = new int[64] ;
 
+    /**
+     * @param changingColorPermission permission to changing color
+     * @param Cell list of the locations
+     * @param imHuman
+     */
     public PcPlayer(Boolean changingColorPermission, int[] Cell, Boolean imHuman) {
         super(changingColorPermission, Cell, imHuman);
     }
 
-
+    /**
+     *
+     * @return turn
+     */
     public int getTurn() {
 
         return turn;
     }
 
+    /**
+     *
+     * @param turn turn of the player
+     */
     public void setTurn(int turn) {
 
         this.turn = turn;
@@ -26,17 +38,20 @@ public class PcPlayer extends CloudyPlayer {
     int[] recommendedChoice = new int[]{0, 7, 63, 56};
     int[] unrecommendedChoice = new int[]{8 ,16,54 ,49};
 
+    /**
+     * method for computer to put the cell on the board
+     * @param Cell list of the locations
+     * @param turn turn of the player
+     */
     public void put(int [] Cell , int turn) {
         if (turn%7 <= 3 ) {
             int temp = 0;
-            System.out.println("shoroo e kar");
             int aim = 0;
             minChoices = 63;
             int counter = 0;
             for (int i = 0; i < recommendedChoice.length; ++i) {
                 if (Cell[recommendedChoice[i]] == 0) {
                     check(recommendedChoice[i], Cell, turn);
-                    System.out.println("All = =  " + getAllRotatedCell());
                     if (getAllRotatedCell() != 0) {
                         counter++;
                         break;
@@ -44,7 +59,6 @@ public class PcPlayer extends CloudyPlayer {
                 }
             }
             if (counter == 0) {
-                System.out.println("marhaleye 2 ");
                 for (int i = 0; i < 64; ++i) {
                     temp = 0;
                     makeCopy(copy, Cell);
@@ -63,7 +77,6 @@ public class PcPlayer extends CloudyPlayer {
 
                     }
                 }
-                System.out.println(minChoices + "  " + aim);
                 check(aim, Cell, turn);
             }
             if (counter == 0) {
@@ -80,14 +93,12 @@ public class PcPlayer extends CloudyPlayer {
         else
         {
            int temp = 0;
-            System.out.println("shoroo e kar");
             int aim = 0;
             int maxCells = 1;
             int counter = 0;
             for (int i = 0; i < recommendedChoice.length; ++i) {
                 if (Cell[recommendedChoice[i]] == 0) {
                     check(recommendedChoice[i], Cell, turn);
-                    System.out.println("All = =  " + getAllRotatedCell());
                     if (getAllRotatedCell() != 0) {
                         counter++;
                         break;
@@ -95,7 +106,6 @@ public class PcPlayer extends CloudyPlayer {
                 }
             }
             if (counter == 0) {
-                System.out.println("marhaleye 2 ");
                 for (int i = 0; i < 64; ++i) {
                     temp = 0;
                     makeCopy(copy, Cell);
@@ -110,7 +120,6 @@ public class PcPlayer extends CloudyPlayer {
 
                     }
                 }
-                System.out.println(minChoices + "  " + aim);
                 check(aim, Cell, turn);
             }
             if (counter == 0) {
@@ -127,6 +136,11 @@ public class PcPlayer extends CloudyPlayer {
 
     }
 
+    /**
+     * to store the locations
+     * @param copy copy of locations
+     * @param Cell list of location
+     */
     public void makeCopy(int[] copy, int[] Cell) {
        // System.out.println(copy.length);
         for (int i = 0; i < Cell.length; i++) {

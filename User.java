@@ -4,11 +4,20 @@ import java.util.Scanner;
 
 public class User extends Player {
 
-
+    /**
+     *
+     * @param changingColorPermission permission to changing color
+     * @param imHumn permission to do somthing just human can do it
+     */
     public User(Boolean changingColorPermission, Boolean imHumn) {
         super(changingColorPermission, imHumn);
     }
 
+    /**
+     * scanning the code that user type it
+     * and change it to the location
+     * @return where that we want to put our Cell
+     */
     public int scanning() {
         Scanner Input = new Scanner(System.in);
         int counter = 0;
