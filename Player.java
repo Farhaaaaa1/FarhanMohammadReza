@@ -16,6 +16,7 @@ abstract class Player {
 
     /**
      * get method for permission
+     *
      * @return changing color permission
      */
     public Boolean getChangingColorPermission() {
@@ -23,8 +24,7 @@ abstract class Player {
     }
 
     /**
-     *
-     * @param changingColorPermission  changing Color Permission
+     * @param changingColorPermission changing Color Permission
      */
     public void setChangingColorPermission(Boolean changingColorPermission) {
         this.changingColorPermission = changingColorPermission;
@@ -38,7 +38,6 @@ abstract class Player {
     }
 
     /**
-     *
      * @param imHumn onr field to know this user is computer or not
      */
     public void setImHumn(Boolean imHumn) {
@@ -47,6 +46,7 @@ abstract class Player {
 
     /**
      * get the number of rotated Cell
+     *
      * @return number of rotated Cells
      */
     public int getAllRotatedCell() {
@@ -55,6 +55,7 @@ abstract class Player {
 
     /**
      * get number of choices that we allow to put our Cell
+     *
      * @return number of choices we have
      */
     public int getNumberOfChoices() {
@@ -70,7 +71,7 @@ abstract class Player {
 
     /**
      * @param changingColorPermission permission to rotate the cells
-     * @param imHumn permission to do somthing that just human are able to do it
+     * @param imHumn                  permission to do somthing that just human are able to do it
      */
     public Player(Boolean changingColorPermission, Boolean imHumn) {
         this.changingColorPermission = changingColorPermission;
@@ -80,12 +81,13 @@ abstract class Player {
     /**
      * method to check can we put our Cell at that location or not
      * by checking it  the side by side Cells
-     * @param aim the location that we want to put our Cell
-     * @param Cell  Cell of the game that we call it in persian mohre
-     * @param turn  turn of player :)
+     *
+     * @param aim  the location that we want to put our Cell
+     * @param Cell Cell of the game that we call it in persian mohre
+     * @param turn turn of player :)
      */
     public void check(int aim, int[] Cell, int turn) {
-        allRotatedCell = 0 ;
+        allRotatedCell = 0;
         int copyOfTurn = turn;
         // make color of the Cells by "turn"
         if (turn % 2 == 1)
@@ -151,11 +153,12 @@ abstract class Player {
 
     /**
      * trace every legal direction
-     * @param move  how we track or destination of two Cells in our line
+     *
+     * @param move          how we track or destination of two Cells in our line
      * @param startingPoint where we started tracing or location of our Cell that we put it in this turn
-     * @param Cell list of our Cells or in this case all the location
-     * @param turn turn of player
-     * @return  number of rotated Cells / Cell
+     * @param Cell          list of our Cells or in this case all the location
+     * @param turn          turn of player
+     * @return number of rotated Cells / Cell
      */
     public int tracing(int move, int startingPoint, int[] Cell, int turn) {
         int finishingPoint = startingPoint + move;
@@ -181,11 +184,12 @@ abstract class Player {
 
     /**
      * color the Cells
-     * @param startingPoint where we put our Cell on it
+     *
+     * @param startingPoint  where we put our Cell on it
      * @param finishingPoint end of our line
-     * @param Cell list of locations
-     * @param move  destination of two Cells in our line
-     * @param color color that we splash the Cells between starting point and finishing point
+     * @param Cell           list of locations
+     * @param move           destination of two Cells in our line
+     * @param color          color that we splash the Cells between starting point and finishing point
      */
     public void coloring(int startingPoint, int finishingPoint, int[] Cell, int move, int color) {
 
@@ -200,6 +204,7 @@ abstract class Player {
     /**
      * if we type wrong code or we type wrong location with this meyhod we can type and
      * scan again
+     *
      * @return where we want to put our CEll on it
      */
     private int scanningAgain() {
@@ -225,9 +230,10 @@ abstract class Player {
 
     /**
      * method to check we can we colored it or not
-     * @param startingPoint where we put our Cell on it
-     * @param finishingPoint    end of our line
-     * @param move  destination of two Cells in our line
+     *
+     * @param startingPoint  where we put our Cell on it
+     * @param finishingPoint end of our line
+     * @param move           destination of two Cells in our line
      * @return access to coloring or not
      */
     public Boolean access(int startingPoint, int finishingPoint, int move) {
@@ -237,9 +243,9 @@ abstract class Player {
                 return true;
             else
                 return false;
-        } else if (move == 8)
-            return true ;
-            else{
+        } else if (move == 8 || move == -8)
+            return true;
+        else {
             if (abs == Math.abs(finishingPoint % 8 - startingPoint % 8))
                 return true;
             else

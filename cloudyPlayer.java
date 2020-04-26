@@ -5,24 +5,9 @@ import javafx.scene.control.Cell;
 public class CloudyPlayer extends Player {
     private int[] Cell;
     private int turn;
-
     /**
-     * @return turn of the player
-     */
-    public int getTurn() {
-        return turn;
-    }
-
-    /**
+     * set two item to getting
      *
-     * @param turn turn of the player
-     */
-    public void setTurn(int turn) {
-        this.turn = turn;
-    }
-
-    /**
-     * set two item to getter
      * @param turn turn of the player
      * @param Cell list of the locations
      */
@@ -37,19 +22,20 @@ public class CloudyPlayer extends Player {
      * @param Cell list of the loctions
      * @param imHuman permissin to do somthjing that just human can do (human user )
      */
-    public CloudyPlayer(Boolean changingColorPermission, int [] Cell , Boolean imHuman ) {
-        super(changingColorPermission ,imHuman );
+    public CloudyPlayer(Boolean changingColorPermission, int[] Cell, Boolean imHuman) {
+        super(changingColorPermission, imHuman);
         this.Cell = Cell;
         setNumberOfChoices(0);
     }
 
     /**
      * method to know how many choices we have to put our Cell
+     *
      * @param turn turn of the player
      * @param Cell list of the Cells
      * @return number of the Choices
      */
-    public int checking(int turn , int [] Cell) {
+    public int checking(int turn, int[] Cell) {
         setNumberOfChoices(0);
         setAll(turn, Cell);
         for (int i = 0; i < Cell.length; i++) {

@@ -8,6 +8,7 @@ public class Board {
 
     /**
      * set all of them
+     *
      * @param Cell Cell of the board we called it in persian mohre LOL
      */
     public void firstValue(int[] Cell) {
@@ -23,6 +24,7 @@ public class Board {
 
     /**
      * printing the board game and show score boarde and also write turn of the players in terminal
+     *
      * @param Cell List of all of the Cells
      * @param turn turn of player
      */
@@ -30,10 +32,12 @@ public class Board {
         int y = 8;
         int x = 0;
         int counter = 0;
-        System.out.println("\u001B[34m   " + "              Player 1 : " + getTheScore(1, Cell) +
-                "\u001B[0m" + "\u001B[31m" + "         Player 2 : " + getTheScore(-1, Cell));
-        System.out.println("");
-        System.out.print("      \u001B[0m \u001B[33m A       B       C       D      E       F       G       H ");
+        System.out.println("\n\u001B[0m \u001B[33m____***_______***_______***_______***_______***" +
+                "_______***_______***_______***_______***_______***_______***_______***___________***" +
+                "___________***___________***___________***___________***____");
+        System.out.println("\n\u001B[34m   " + "\t\t\t   Player 1 : " + getTheScore(1, Cell) +
+                "\u001B[0m" + "\u001B[31m" + "\t\t\t\tPlayer 2 : " + getTheScore(-1, Cell));
+        System.out.print("\n      \u001B[0m \u001B[33m A       B       C       D      E       F       G       H ");
         System.out.println("\u001B[0m");
         System.out.println("");
         System.out.print(" \u001B[0m \u001B[33m 1 \u001B[0m");
@@ -98,13 +102,12 @@ public class Board {
             System.out.println();
         }
     }
+
     /**
      * nothing important just copy of one site
      * it just creat a pattern of N in terminal
      */
     static void n() {
-        System.out.println();
-
         for (int i = 0; i < 8; i++) {
             System.out.print(" ");
             for (int n = 0; n < 8; n++) {
@@ -122,36 +125,36 @@ public class Board {
 
     /**
      * nothing important just copy of one site
-     * it just creat D pattern of E in terminal
+     * it just creat a pattern of D in terminal
      */
-        static void d() {
-            System.out.println();
-            for (int i = 0; i < 8; i++) {
-                {
+    static void d() {
+        System.out.println();
+        for (int i = 0; i < 8; i++) {
+            {
+                System.out.print(E);
+            }
+
+            for (int o = 0; o < 8; o++) {
+                if (i == 0 && (o >= 6 - i))
+                    System.out.print("");
+                else if (i == 1
+                        && (o == 0 || o == 8 - i
+                        || (o < 6)))
+                    System.out.print(" ");
+                else if (i == 2 && (o == 1 || o == 8 - i || (o < 6)))
+                    System.out.print(" ");
+
+                else if ((i == 3 || i == 4 || i == 5) && (o < 7))
+                    System.out.print(" ");
+                else if (i == 6 && (o == 0 || o == 8 + 5 - i || (o < 6)))
+                    System.out.print(" ");
+                else if (i == 7 && (o >= 6 - i + 7))
+                    System.out.print(" ");
+                else {
                     System.out.print(E);
                 }
-
-                for (int o = 0; o < 8; o++) {
-                    if (i == 0 && (o >= 6 - i))
-                        System.out.print("");
-                    else if (i == 1
-                            && (o == 0 || o == 8 - i
-                            || (o < 6)))
-                        System.out.print(" ");
-                    else if (i == 2 && (o == 1 || o == 8 - i || (o < 6)))
-                        System.out.print(" ");
-
-                    else if ((i == 3 || i == 4 || i == 5) && (o < 7))
-                        System.out.print(" ");
-                    else if (i == 6 && (o == 0 || o == 8 + 5 - i || (o < 6)))
-                        System.out.print(" ");
-                    else if (i == 7 && (o >= 6 - i + 7))
-                        System.out.print(" ");
-                    else {
-                        System.out.print(E);
-                    }
-                }
-                System.out.println();
             }
+            System.out.println();
         }
+    }
 }
